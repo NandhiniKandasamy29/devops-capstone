@@ -1,0 +1,8 @@
+version: '3'
+
+services:
+  final-react-app:
+    build: .
+    container_name: final-react-app
+    ports:
+      - "3000:80"
