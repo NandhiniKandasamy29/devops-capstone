@@ -1,70 +1,217 @@
-# Getting Started with Create React App
+# DevOps Capstone Project
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Project Overview
 
-## Available Scripts
+This project demonstrates a complete DevOps CI/CD pipeline using:
 
-In the project directory, you can run:
+- React Application
+- Docker
+- Jenkins
+- GitHub
+- Docker Hub
+- Prometheus
+- Grafana
+- AWS EC2
 
-### `npm start`
+The application is containerized using Docker and deployed automatically through Jenkins pipeline.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+# Tools & Technologies Used
 
-### `npm test`
+- React JS
+- Docker
+- Jenkins
+- GitHub
+- Docker Hub
+- Prometheus
+- Grafana
+- AWS EC2 Ubuntu Instance
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `npm run build`
+# Project Architecture
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+GitHub → Jenkins Pipeline → Docker Build → Docker Hub → Docker Container Deployment → Monitoring using Prometheus & Grafana
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+---
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+# Application Setup
 
-### `npm run eject`
+## Clone Repository
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```bash
+git clone https://github.com/NandhiniKandasamy29/devops-capstone.git
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Move into Project Directory
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```bash
+cd devops-capstone/devops-build
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Install Dependencies
 
-## Learn More
+```bash
+npm install
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Run Application
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```bash
+npm start
+```
 
-### Code Splitting
+Application runs on:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+```text
+http://localhost:3000
+```
 
-### Analyzing the Bundle Size
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+# Docker Setup
 
-### Making a Progressive Web App
+## Build Docker Image
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+```bash
+docker build -t final-devops-app .
+```
 
-### Advanced Configuration
+## Run Docker Container
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+```bash
+docker run -d -p 80:80 --name final-react-app final-devops-app
+```
 
-### Deployment
+Application runs on:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+```text
+http://localhost
+```
 
-### `npm run build` fails to minify
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+# Docker Hub Repository
+
+## Tag Docker Image
+
+```bash
+docker tag final-devops-app nandhini209/nandhini-dev-app
+```
+
+## Push Docker Image
+
+```bash
+docker push nandhini209/nandhini-dev-app
+```
+
+Docker Hub Repository:
+
+https://hub.docker.com/r/nandhini209/nandhini-dev-app
+
+---
+
+# Jenkins CI/CD Pipeline
+
+## Pipeline Stages
+
+1. Clone Repository
+2. Build Docker Image
+3. Tag Docker Image
+4. Push Image to Docker Hub
+5. Deploy Docker Container
+
+---
+
+# Jenkinsfile
+
+The Jenkins pipeline is configured using Jenkinsfile inside the GitHub repository.
+
+---
+
+# Monitoring Setup
+
+## Prometheus
+
+Prometheus collects metrics from Node Exporter.
+
+Access:
+
+```text
+http://13.201.66.59:9090
+```
+
+---
+
+## Node Exporter
+
+Node Exporter provides system-level metrics.
+
+Access:
+
+```text
+http://13.201.66.59:9100/metrics
+```
+
+---
+
+## Grafana
+
+Grafana visualizes monitoring metrics using dashboards.
+
+Access:
+
+```text
+http://13.201.66.59:3000
+```
+
+Default Login:
+
+```text
+Username: admin
+Password: admin
+```
+
+---
+
+# Monitoring Dashboard Metrics
+
+- CPU Usage
+- Memory Usage
+- Disk Usage
+- Network Usage
+
+---
+
+# AWS EC2 Configuration
+
+- Ubuntu EC2 Instance
+- Docker Installed
+- Jenkins Installed
+- Prometheus Installed
+- Grafana Installed
+
+---
+
+# GitHub Repository
+
+https://github.com/NandhiniKandasamy29/devops-capstone
+
+---
+
+# Screenshots Included
+
+- Jenkins Pipeline Success
+- Docker Build Output
+- Docker Hub Push
+- Application Output
+- Prometheus Targets
+- Node Exporter Metrics
+- Grafana Dashboard
+
+---
+
+# Project Outcome
+
+Successfully implemented an end-to-end DevOps CI/CD pipeline with monitoring and containerized deployment using AWS and Jenkins.
